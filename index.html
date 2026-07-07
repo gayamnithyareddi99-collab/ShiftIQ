@@ -229,6 +229,8 @@ h1 .blue{color:var(--blue-dim);}
 .c-detail span{font-size:14px;color:#fff;font-weight:500;}
 
 /* FOOTER */
+.deep-link-flash{animation:deepFlash 1.6s ease-out;}
+@keyframes deepFlash{0%{box-shadow:0 0 0 3px var(--blue);}100%{box-shadow:0 0 0 0 rgba(76,123,255,0);}}
 footer{background:var(--footer-bg);padding:56px 0 0;color:rgba(255,255,255,.6);}
 .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.1);}
 .f-brand p{font-size:13px;line-height:1.8;margin-top:16px;max-width:280px;color:rgba(255,255,255,.4);}
@@ -244,10 +246,12 @@ footer{background:var(--footer-bg);padding:56px 0 0;color:rgba(255,255,255,.6);}
 .footer-links a:hover{color:#fff;}
 
 /* RESPONSIVE */
-@media(max-width:900px){
-  .tw{grid-template-columns:1fr !important;}
+@media(max-width:1050px){
   .nav-links{display:none;}
   .hamburger{display:flex;}
+}
+@media(max-width:900px){
+  .tw{grid-template-columns:1fr !important;}
   .hero-inner{grid-template-columns:1fr;}
   .stats-grid{flex-direction:column;}
   .stat-card{border-right:none;border-bottom:1px solid var(--rule-w);padding:20px 0;}
@@ -358,27 +362,27 @@ footer{background:var(--footer-bg);padding:56px 0 0;color:rgba(255,255,255,.6);}
     <div class="divider div-blue"></div>
     <p class="para-d" style="max-width:760px">ShiftIQ links POS systems, aggregator platforms and staff rotas into one closed-loop operational platform  diagnosing labour and waste inefficiency before it erodes margin, not after.</p>
     <div class="plat-grid" style="margin-top:36px">
-      <div class="plat-card">
+      <div class="plat-card" id="mod-scheduling">
         <div class="plat-img"><img src="https://images.unsplash.com/photo-1647427017067-8f33ccbae493?fm=jpg&q=60&w=900&auto=format&fit=crop" alt="restaurant point of sale system in use" loading="lazy"><span class="pi-tag">Scheduling Engine</span></div>
         <div class="plat-inner"><div class="el-badge">Module 01</div><h3>AI-Powered Shift Scheduling Engine</h3><p>Automatically builds optimised rotas by analysing predicted demand, historical sales and live staff availability at shift-level granularity.</p><div class="more-txt">Trained on seasonal trading patterns, local events and aggregator order volumes, the engine keeps improving accuracy with every shift it schedules  cutting labour cost inefficiency by an estimated 1.5–3.5 percentage points.</div><button class="expand-btn" onclick="toggleCard(this)">Learn More</button></div>
       </div>
-      <div class="plat-card">
+      <div class="plat-card" id="mod-performance">
         <div class="plat-img"><img src="https://images.unsplash.com/photo-1556742393-d75f468bfcb0?fm=jpg&q=60&w=900&auto=format&fit=crop" alt="kitchen staff working in restaurant kitchen" loading="lazy"><span class="pi-tag">Performance</span></div>
         <div class="plat-inner"><div class="el-badge">Module 02</div><h3>Real-Time Staff Performance Intelligence</h3><p>Tracks sales-per-hour, upsell rates and task completion live on the shift floor  not in a report after the shift has ended.</p><div class="more-txt">Performance data feeds straight back into the scheduling engine, so ShiftIQ learns which staff combinations consistently deliver the strongest shifts and flags underperformance while there's still time to act.</div><button class="expand-btn" onclick="toggleCard(this)">Learn More</button></div>
       </div>
-      <div class="plat-card">
+      <div class="plat-card" id="mod-aggregator">
         <div class="plat-img"><img src="https://images.unsplash.com/photo-1658282513777-deb2e68367c3?fm=jpg&q=60&w=900&auto=format&fit=crop" alt="restaurant staff using tablet" loading="lazy"><span class="pi-tag">Aggregator AI</span></div>
         <div class="plat-inner"><div class="el-badge">Module 03</div><h3>Unified Aggregator Sales Analytics</h3><p>Consolidates Deliveroo, Uber Eats and Just Eat data alongside dine-in and takeaway sales into one live operational view.</p><div class="more-txt">With delivery channels often representing 40–60% of turnover, this module turns three separate dashboards into a single decision layer for staffing, promotions and pricing.</div><button class="expand-btn" onclick="toggleCard(this)">Learn More</button></div>
       </div>
-      <div class="plat-card">
+      <div class="plat-card" id="mod-waste">
         <div class="plat-img"><img src="https://images.unsplash.com/photo-1658282687028-09f5b0b5b3ad?fm=jpg&q=60&w=900&auto=format&fit=crop" alt="chef at restaurant counter" loading="lazy"><span class="pi-tag">Waste AI</span></div>
         <div class="plat-inner"><div class="el-badge">Module 04</div><h3>Stock &amp; Waste Optimisation Module</h3><p>Flags ingredients trending toward overuse and recommends reorder quantities calibrated to predicted demand, not fixed thresholds.</p><div class="more-txt">Turns waste management from an end-of-week report into a continuous, shift-level discipline  protecting margin where food costs often run 28–35% of revenue.</div><button class="expand-btn" onclick="toggleCard(this)">Learn More</button></div>
       </div>
-      <div class="plat-card">
+      <div class="plat-card" id="mod-correlation">
         <div class="plat-img"><img src="https://images.unsplash.com/photo-1658282653150-67e2023a67e3?fm=jpg&q=60&w=900&auto=format&fit=crop" alt="tablet ordering system at restaurant table" loading="lazy"><span class="pi-tag">Correlation Engine</span></div>
         <div class="plat-inner"><div class="el-badge">Module 05</div><h3>Shift-Level Performance Correlation Engine</h3><p>Explains why a shift performed the way it did by linking staffing, waste, delivery demand and revenue outcomes.</p><div class="more-txt">The platform's core defensible moat  every shift makes the model smarter, surfacing which team structures and rota patterns actually drive revenue and customer satisfaction.</div><button class="expand-btn" onclick="toggleCard(this)">Learn More</button></div>
       </div>
-      <div class="plat-card">
+      <div class="plat-card" id="mod-compliance">
         <div class="plat-img"><img src="https://images.unsplash.com/photo-1720731438978-e22edb926059?fm=jpg&q=60&w=900&auto=format&fit=crop" alt="restaurant counter with clock" loading="lazy"><span class="pi-tag">Compliance</span></div>
         <div class="plat-inner"><div class="el-badge">Module 06</div><h3>Automated Compliance &amp; Checklist Management</h3><p>Digitises opening, closing and food-safety checklists with timestamped completion and real-time alerts on missed tasks.</p><div class="more-txt">Maintains an auditable compliance trail aligned to UK food safety, allergen and working-time regulations  no more paper checklists lost at the bottom of a drawer.</div><button class="expand-btn" onclick="toggleCard(this)">Learn More</button></div>
       </div>
@@ -445,7 +449,7 @@ footer{background:var(--footer-bg);padding:56px 0 0;color:rgba(255,255,255,.6);}
     </div>
   </div>
 </section>
-<section class="sec-light">
+<section class="sec-light" id="founder-section">
   <div class="container">
     <div class="label-tag">Founder Fit</div>
     <h2 class="section-h2 h2-dark">Meet the Founder</h2>
@@ -502,10 +506,10 @@ footer{background:var(--footer-bg);padding:56px 0 0;color:rgba(255,255,255,.6);}
     <h2 class="section-h2 h2-dark">Built for Every Type of Operator.</h2>
     <div class="divider div-blue"></div>
     <div class="why-grid">
-      <div class="why-card"><div class="why-icon"><i class="fas fa-store"></i></div><h4>QSR Franchise Operators</h4><p>2–20 site pizza, chicken, burger and kebab chains and sub-franchise networks needing consistent labour efficiency across locations.</p></div>
-      <div class="why-card"><div class="why-icon"><i class="fas fa-utensils"></i></div><h4>Casual Dining Chains</h4><p>Mid-scale groups with 10–50 sites needing better shift performance visibility across dine-in, takeaway and delivery channels.</p></div>
-      <div class="why-card"><div class="why-icon"><i class="fas fa-people-roof"></i></div><h4>Independent Multi-Location Groups</h4><p>Owner-operated groups with 3–15 sites needing a centralised dashboard without hiring dedicated analysts.</p></div>
-      <div class="why-card"><div class="why-icon"><i class="fas fa-truck-fast"></i></div><h4>Ghost &amp; Dark Kitchens</h4><p>Delivery-only operators where 80%+ of revenue depends on aggregators, needing unified delivery analytics and demand-aligned staffing.</p></div>
+      <div class="why-card" id="seg-qsr"><div class="why-icon"><i class="fas fa-store"></i></div><h4>QSR Franchise Operators</h4><p>2–20 site pizza, chicken, burger and kebab chains and sub-franchise networks needing consistent labour efficiency across locations.</p></div>
+      <div class="why-card" id="seg-casual"><div class="why-icon"><i class="fas fa-utensils"></i></div><h4>Casual Dining Chains</h4><p>Mid-scale groups with 10–50 sites needing better shift performance visibility across dine-in, takeaway and delivery channels.</p></div>
+      <div class="why-card" id="seg-independent"><div class="why-icon"><i class="fas fa-people-roof"></i></div><h4>Independent Multi-Location Groups</h4><p>Owner-operated groups with 3–15 sites needing a centralised dashboard without hiring dedicated analysts.</p></div>
+      <div class="why-card" id="seg-ghost"><div class="why-icon"><i class="fas fa-truck-fast"></i></div><h4>Ghost &amp; Dark Kitchens</h4><p>Delivery-only operators where 80%+ of revenue depends on aggregators, needing unified delivery analytics and demand-aligned staffing.</p></div>
       <div class="why-card"><div class="why-icon"><i class="fas fa-building"></i></div><h4>Hospitality Management Companies</h4><p>Multi-brand operators across hotels, airports and retail sites needing standardised scheduling and centralised waste tracking.</p></div>
       <div class="why-card"><div class="why-icon"><i class="fas fa-sitemap"></i></div><h4>Franchise Development Teams</h4><p>Parent organisations needing objective, data-driven scoring to assess franchisee operational readiness before expansion.</p></div>
     </div>
@@ -632,7 +636,7 @@ footer{background:var(--footer-bg);padding:56px 0 0;color:rgba(255,255,255,.6);}
     <div class="divider div-blue"></div>
     <p class="para-d" style="max-width:760px">Per-site SaaS pricing built for the UK hospitality SME economy  from single-brand scheduling to multi-site enterprise benchmarking.</p>
     <div class="pricing-grid">
-      <div class="price-card">
+      <div class="price-card" id="tier-starter">
         <div class="price-tier">Rota Core</div>
         <div class="price-title">Starter</div>
         <div class="price-amount">£35<span>/site/mo</span></div>
@@ -645,7 +649,7 @@ footer{background:var(--footer-bg);padding:56px 0 0;color:rgba(255,255,255,.6);}
         </ul>
         <button class="btn-s" style="width:100%;justify-content:center" onclick="showPage('contact')">Get Started</button>
       </div>
-      <div class="price-card featured">
+      <div class="price-card featured" id="tier-professional">
         <div class="feat-lbl">Most Popular</div>
         <div class="price-tier">Shift Intelligence</div>
         <div class="price-title">Professional</div>
@@ -660,7 +664,7 @@ footer{background:var(--footer-bg);padding:56px 0 0;color:rgba(255,255,255,.6);}
         </ul>
         <button class="btn-p" style="width:100%;justify-content:center" onclick="showPage('contact')">Get Started</button>
       </div>
-      <div class="price-card">
+      <div class="price-card" id="tier-enterprise">
         <div class="price-tier">Portfolio Sovereign</div>
         <div class="price-title">Business &amp; Enterprise</div>
         <div class="price-amount">£130<span>+/site/mo</span></div>
@@ -754,6 +758,65 @@ footer{background:var(--footer-bg);padding:56px 0 0;color:rgba(255,255,255,.6);}
 </section>
 </div><!-- /contact -->
 
+<!-- ═══════════════ PRIVACY POLICY ═══════════════ -->
+<div class="page" id="page-privacy">
+<section class="sec-light" style="padding-top:clamp(60px,8vw,96px)">
+  <div class="container">
+    <div class="label-tag">Legal</div>
+    <h2 class="section-h2 h2-dark">Privacy Policy</h2>
+    <div class="divider div-blue"></div>
+    <p class="para-d" style="max-width:760px;margin-bottom:24px">Last updated: July 2026. ShiftIQ UK Ltd ("ShiftIQ", "we", "us") is committed to protecting the personal data of our customers, site users and website visitors in line with UK GDPR and the Data Protection Act 2018.</p>
+    <div style="display:flex;flex-direction:column;gap:20px;max-width:800px">
+      <div><h4 style="font-family:var(--display);font-size:16px;margin-bottom:6px;color:var(--text-dark)">1. Data We Collect</h4><p class="para-d">Account and billing details, staff rota and scheduling data entered by operators, POS and aggregator sales data connected via integrations, and standard website analytics such as device type and pages visited.</p></div>
+      <div><h4 style="font-family:var(--display);font-size:16px;margin-bottom:6px;color:var(--text-dark)">2. How We Use Data</h4><p class="para-d">To operate the AI scheduling and analytics engine, generate performance and waste insights for your sites, provide customer support, and improve our models using aggregated, de-identified operational patterns.</p></div>
+      <div><h4 style="font-family:var(--display);font-size:16px;margin-bottom:6px;color:var(--text-dark)">3. Data Sharing</h4><p class="para-d">We do not sell personal data. Data is shared only with sub-processors required to run the platform (cloud hosting, POS/aggregator integration partners) under signed data processing agreements.</p></div>
+      <div><h4 style="font-family:var(--display);font-size:16px;margin-bottom:6px;color:var(--text-dark)">4. Your Rights</h4><p class="para-d">Under UK GDPR you can request access to, correction of, or deletion of your personal data, and can object to certain processing. Contact us at shiftiquk@outlook.com to exercise these rights.</p></div>
+      <div><h4 style="font-family:var(--display);font-size:16px;margin-bottom:6px;color:var(--text-dark)">5. Data Retention &amp; Security</h4><p class="para-d">Operational data is retained for the duration of your subscription plus a limited period for legal and accounting purposes, and is encrypted in transit and at rest.</p></div>
+    </div>
+    <button class="btn-s" style="margin-top:32px" onclick="showPage('contact')">Questions About This Policy? Contact Us</button>
+  </div>
+</section>
+</div><!-- /privacy -->
+
+<!-- ═══════════════ TERMS OF SERVICE ═══════════════ -->
+<div class="page" id="page-terms">
+<section class="sec-light" style="padding-top:clamp(60px,8vw,96px)">
+  <div class="container">
+    <div class="label-tag">Legal</div>
+    <h2 class="section-h2 h2-dark">Terms of Service</h2>
+    <div class="divider div-blue"></div>
+    <p class="para-d" style="max-width:760px;margin-bottom:24px">Last updated: July 2026. These Terms govern use of the ShiftIQ platform by UK hospitality operators and their authorised staff. By subscribing, you agree to the terms below.</p>
+    <div style="display:flex;flex-direction:column;gap:20px;max-width:800px">
+      <div><h4 style="font-family:var(--display);font-size:16px;margin-bottom:6px;color:var(--text-dark)">1. Subscription &amp; Billing</h4><p class="para-d">Plans are billed per site, per month, on the Starter, Professional or Business &amp; Enterprise tier selected at signup. Fees are payable in advance and are non-refundable except as required by law.</p></div>
+      <div><h4 style="font-family:var(--display);font-size:16px;margin-bottom:6px;color:var(--text-dark)">2. Acceptable Use</h4><p class="para-d">You agree to use ShiftIQ only for legitimate workforce scheduling and operational analytics, and not to attempt to reverse-engineer, resell, or misuse data belonging to other operators.</p></div>
+      <div><h4 style="font-family:var(--display);font-size:16px;margin-bottom:6px;color:var(--text-dark)">3. Integrations &amp; Third Parties</h4><p class="para-d">ShiftIQ connects to third-party POS and aggregator platforms (e.g. Deliveroo, Uber Eats, Just Eat, Square, Lightspeed, Epos Now). We are not responsible for outages or data accuracy issues originating from those third-party services.</p></div>
+      <div><h4 style="font-family:var(--display);font-size:16px;margin-bottom:6px;color:var(--text-dark)">4. Liability</h4><p class="para-d">ShiftIQ provides scheduling and analytics recommendations as decision support. Final staffing, compliance and operational decisions remain the responsibility of the operator.</p></div>
+      <div><h4 style="font-family:var(--display);font-size:16px;margin-bottom:6px;color:var(--text-dark)">5. Termination</h4><p class="para-d">Either party may terminate a subscription with 30 days' written notice. Access to historical data exports remains available for 30 days following termination.</p></div>
+    </div>
+    <button class="btn-s" style="margin-top:32px" onclick="showPage('contact')">Questions About These Terms? Contact Us</button>
+  </div>
+</section>
+</div><!-- /terms -->
+
+<!-- ═══════════════ FSA COMPLIANCE ═══════════════ -->
+<div class="page" id="page-fsa">
+<section class="sec-light" style="padding-top:clamp(60px,8vw,96px)">
+  <div class="container">
+    <div class="label-tag">Legal</div>
+    <h2 class="section-h2 h2-dark">FSA Compliance</h2>
+    <div class="divider div-blue"></div>
+    <p class="para-d" style="max-width:760px;margin-bottom:24px">ShiftIQ's compliance module is designed to help UK hospitality operators stay aligned with Food Standards Agency (FSA) requirements and related UK working-time and wage regulation  though the operator remains legally responsible for on-site compliance.</p>
+    <div class="why-grid">
+      <div class="why-card"><div class="why-icon"><i class="fas fa-clipboard-check"></i></div><h4>Digitised Food Safety Checklists</h4><p>Opening, closing and temperature-check tasks are logged with timestamps, replacing paper HACCP records with an auditable digital trail.</p></div>
+      <div class="why-card"><div class="why-icon"><i class="fas fa-triangle-exclamation"></i></div><h4>Missed-Task Alerts</h4><p>Shift managers are alerted in real time when a required food-safety or allergen check has not been completed within the expected window.</p></div>
+      <div class="why-card"><div class="why-icon"><i class="fas fa-scale-balanced"></i></div><h4>Working Time &amp; Wage Bands</h4><p>Scheduling logic accounts for National Living Wage age bands, rest-break entitlements and working-time regulations when building rotas.</p></div>
+      <div class="why-card"><div class="why-icon"><i class="fas fa-folder-open"></i></div><h4>Audit-Ready Records</h4><p>Compliance history is exportable for environmental health visits and internal audits, with a full timestamped record per site.</p></div>
+    </div>
+    <button class="btn-s" style="margin-top:32px" onclick="showPage('contact')">Ask About FSA Compliance Features</button>
+  </div>
+</section>
+</div><!-- /fsa -->
+
 <footer>
   <div class="container">
     <div class="footer-grid">
@@ -767,19 +830,19 @@ footer{background:var(--footer-bg);padding:56px 0 0;color:rgba(255,255,255,.6);}
       <div>
         <div class="f-col-title">Platform</div>
         <div class="f-col">
-          <a onclick="showPage('platform')">AI Shift Scheduling Engine</a>
-          <a onclick="showPage('platform')">Real-Time Performance Intelligence</a>
-          <a onclick="showPage('platform')">Aggregator Sales Analytics</a>
-          <a onclick="showPage('platform')">Stock &amp; Waste Optimisation</a>
-          <a onclick="showPage('platform')">Compliance Management</a>
-          <a onclick="showPage('platform')">Multi-Store Benchmarking</a>
+          <a onclick="goSection('home','mod-scheduling')">AI Shift Scheduling Engine</a>
+          <a onclick="goSection('home','mod-performance')">Real-Time Performance Intelligence</a>
+          <a onclick="goSection('home','mod-aggregator')">Aggregator Sales Analytics</a>
+          <a onclick="goSection('home','mod-waste')">Stock &amp; Waste Optimisation</a>
+          <a onclick="goSection('home','mod-compliance')">Compliance Management</a>
+          <a onclick="goSection('pricing','tier-enterprise')">Multi-Store Benchmarking</a>
         </div>
       </div>
       <div>
         <div class="f-col-title">Company</div>
         <div class="f-col">
           <a onclick="showPage('about')">About ShiftIQ</a>
-          <a onclick="showPage('about')">Tanmay Shambharkar · Founder</a>
+          <a onclick="goSection('about','founder-section')">Tanmay Shambharkar · Founder</a>
           <a onclick="showPage('process')">How It Works</a>
           <a onclick="showPage('faq')">FAQ</a>
           <a onclick="showPage('market')">Market Analysis</a>
@@ -789,22 +852,22 @@ footer{background:var(--footer-bg);padding:56px 0 0;color:rgba(255,255,255,.6);}
       <div>
         <div class="f-col-title">Solutions</div>
         <div class="f-col">
-          <a onclick="showPage('platform')">QSR Franchise Operators</a>
-          <a onclick="showPage('platform')">Casual Dining Chains</a>
-          <a onclick="showPage('platform')">Independent Restaurant Groups</a>
-          <a onclick="showPage('platform')">Ghost &amp; Dark Kitchens</a>
-          <a onclick="showPage('pricing')">Starter · £35/site/mo</a>
-          <a onclick="showPage('pricing')">Professional · £75/site/mo</a>
-          <a onclick="showPage('pricing')">Business &amp; Enterprise · £130+/site/mo</a>
+          <a onclick="goSection('platform','seg-qsr')">QSR Franchise Operators</a>
+          <a onclick="goSection('platform','seg-casual')">Casual Dining Chains</a>
+          <a onclick="goSection('platform','seg-independent')">Independent Restaurant Groups</a>
+          <a onclick="goSection('platform','seg-ghost')">Ghost &amp; Dark Kitchens</a>
+          <a onclick="goSection('pricing','tier-starter')">Starter · £35/site/mo</a>
+          <a onclick="goSection('pricing','tier-professional')">Professional · £75/site/mo</a>
+          <a onclick="goSection('pricing','tier-enterprise')">Business &amp; Enterprise · £130+/site/mo</a>
         </div>
       </div>
     </div>
     <div class="footer-bar">
       <p>© 2026 <span>ShiftIQ UK Ltd</span> · London, UK · UK GDPR Compliant · shiftiq.co.uk · Founded by Tanmay Shambharkar</p>
       <div class="footer-links">
-        <a onclick="showPage('contact')">Privacy Policy</a>
-        <a onclick="showPage('contact')">Terms of Service</a>
-        <a onclick="showPage('contact')">FSA Compliance</a>
+        <a onclick="showPage('privacy')">Privacy Policy</a>
+        <a onclick="showPage('terms')">Terms of Service</a>
+        <a onclick="showPage('fsa')">FSA Compliance</a>
       </div>
     </div>
   </div>
@@ -820,6 +883,17 @@ function showPage(n){
   if(bt)bt.classList.add('active');
   window.scrollTo({top:0,behavior:'instant'});
   if(n==='market'&&!window._charts){initCharts();window._charts=true;}
+}
+function goSection(n,anchorId){
+  showPage(n);
+  setTimeout(function(){
+    const el=document.getElementById(anchorId);
+    if(el){
+      el.scrollIntoView({behavior:'smooth',block:'start'});
+      el.classList.add('deep-link-flash');
+      setTimeout(()=>el.classList.remove('deep-link-flash'),1600);
+    }
+  },60);
 }
 function toggleCard(btn){
   const c=btn.closest('.plat-card');
