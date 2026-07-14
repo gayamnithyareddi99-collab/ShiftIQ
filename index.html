@@ -286,7 +286,8 @@ h1 .hl{color:var(--signal);}
 .dash-tab.active{background:rgba(255,90,31,.14);color:var(--signal);font-weight:600;}
 .dash-main{flex:1;display:flex;flex-direction:column;min-width:0;}
 .dash-topbar{display:flex;justify-content:space-between;align-items:center;padding:14px 22px;border-bottom:1px solid var(--line);}
-.dash-store{font-size:13px;color:var(--tw);display:flex;align-items:center;gap:8px;font-weight:500;}
+.dash-store{font-size:13px;color:var(--tw);display:flex;align-items:center;gap:8px;font-weight:500;cursor:pointer;transition:opacity .15s;user-select:none;}
+.dash-store:hover{opacity:.75;}
 .dash-store i:last-child{font-size:9px;color:var(--tw-dim);}
 .dash-date{font-family:var(--mono);font-size:11px;color:var(--tw-dim);}
 .dash-panel{display:none;padding:22px;flex:1;}
@@ -518,16 +519,16 @@ footer{background:var(--panel);padding:52px 0 0;color:var(--tw-mid);border-top:1
         </div>
         <div class="dash-main">
           <div class="dash-topbar">
-            <div class="dash-store"><i class="fas fa-store"></i> Cambridge · Site 04 <i class="fas fa-chevron-down"></i></div>
+            <div class="dash-store" id="dashStore" onclick="cycleDashStore()"><i class="fas fa-store"></i> <span id="dashStoreName">Cambridge · Site 04</span> <i class="fas fa-chevron-down"></i></div>
             <div class="dash-date" id="dashLiveDate">Loading shift data…</div>
           </div>
 
           <div class="dash-panel active" data-panel="overview">
             <div class="kpi-grid">
-              <div class="kpi-tile"><div class="kpi-lbl">Labour Cost</div><div class="kpi-val">32.4%</div><div class="kpi-delta up"><i class="fas fa-arrow-down"></i> 2.1pp vs last week</div></div>
-              <div class="kpi-tile"><div class="kpi-lbl">Predicted Footfall</div><div class="kpi-val">186</div><div class="kpi-delta up"><i class="fas fa-arrow-up"></i> 14 covers vs forecast</div></div>
-              <div class="kpi-tile"><div class="kpi-lbl">Waste Risk Items</div><div class="kpi-val">3</div><div class="kpi-delta down"><i class="fas fa-arrow-up"></i> 1 new flag today</div></div>
-              <div class="kpi-tile"><div class="kpi-lbl">Est. Weekly Savings</div><div class="kpi-val">£1,240</div><div class="kpi-delta up"><i class="fas fa-arrow-up"></i> On track vs target</div></div>
+              <div class="kpi-tile"><div class="kpi-lbl">Labour Cost</div><div class="kpi-val" id="kpiLabour">32.4%</div><div class="kpi-delta up" id="kpiLabourDelta"><i class="fas fa-arrow-down"></i> 2.1pp vs last week</div></div>
+              <div class="kpi-tile"><div class="kpi-lbl">Predicted Footfall</div><div class="kpi-val" id="kpiFootfall">186</div><div class="kpi-delta up" id="kpiFootfallDelta"><i class="fas fa-arrow-up"></i> 14 covers vs forecast</div></div>
+              <div class="kpi-tile"><div class="kpi-lbl">Waste Risk Items</div><div class="kpi-val" id="kpiWaste">3</div><div class="kpi-delta down" id="kpiWasteDelta"><i class="fas fa-arrow-up"></i> 1 new flag today</div></div>
+              <div class="kpi-tile"><div class="kpi-lbl">Est. Weekly Savings</div><div class="kpi-val" id="kpiSavings">£1,240</div><div class="kpi-delta up" id="kpiSavingsDelta"><i class="fas fa-arrow-up"></i> On track vs target</div></div>
             </div>
             <div class="dash-chart-wrap"><canvas id="dashMiniChart"></canvas></div>
           </div>
@@ -1250,8 +1251,16 @@ function handleSubmit(e){
   setTimeout(()=>{b.innerHTML='Send Demo Request <i class="fas fa-arrow-right"></i>';b.style.background='';b.style.borderColor='';b.disabled=false;e.target.reset();},3500);
 }
 const SIG='rgba(255,90,31,.85)',SIG2='rgba(255,90,31,.4)',ST='rgba(127,178,201,.85)',ST2='rgba(127,178,201,.45)',OK='rgba(143,191,107,.8)',GR='rgba(255,255,255,.06)',MT='rgba(241,238,230,.7)';
-Chart.defaults.font.family='JetBrains Mono, monospace';Chart.defaults.font.size=11;Chart.defaults.color=MT;
+if(typeof Chart!=='undefined'){
+  Chart.defaults.font.family='JetBrains Mono, monospace';Chart.defaults.font.size=11;Chart.defaults.color=MT;
+}
 function initCharts(){
+  if(typeof Chart==='undefined'){
+    document.querySelectorAll('.chart-wrap canvas').forEach(c=>{
+      c.parentElement.innerHTML='<div style="height:100%;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:11px;color:var(--tw-dim);text-align:center;padding:16px;">Chart unavailable offline.</div>';
+    });
+    return;
+  }
   new Chart(document.getElementById('chartSector'),{type:'bar',data:{labels:['Manual/Paper Scheduling','Late Rota Notice (<6 days)','Short-Staffed Monthly','Avoidable Food Waste','AI Adoption in Ops'],datasets:[{label:'%',data:[69,52,45,75,11.5],backgroundColor:[SIG,ST,SIG2,OK,ST2],borderRadius:4,barPercentage:.6}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{grid:{display:false},ticks:{font:{size:window.innerWidth<480?8:10}}},x:{grid:{color:GR},ticks:{callback:v=>v+'%'}}}}});
   new Chart(document.getElementById('chartRootCause'),{type:'polarArea',data:{labels:['AI Shift Scheduling (91%)','Aggregator Analytics (88%)','Performance Correlation (86%)','Waste Optimisation (84%)','Compliance Automation (79%)'],datasets:[{data:[91,88,86,84,79],backgroundColor:[SIG2,ST2,'rgba(143,191,107,.35)',SIG2,ST2],borderWidth:1.5,borderColor:[SIG,ST,OK,SIG,ST]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{boxWidth:10,padding:8,font:{size:9}}}},scales:{r:{grid:{color:GR},angleLines:{color:GR},ticks:{display:false,backdropColor:'transparent'}}}}});
   const capLabels=['Scheduling AI','Data Integration','Performance Intel.','Mobile UX','Compliance','SME Pricing'];
@@ -1382,11 +1391,50 @@ function setDashTab(name,btn){
   btn.classList.add('active');
   win.querySelector('.dash-panel[data-panel="'+name+'"]').classList.add('active');
 }
+const DASH_STORES=[
+  {name:'Cambridge · Site 04',labour:'32.4%',labourDelta:'2.1pp vs last week',labourDir:'up',footfall:'186',footfallDelta:'14 covers vs forecast',footfallDir:'up',waste:'3',wasteDelta:'1 new flag today',wasteDir:'down',savings:'£1,240',savingsDelta:'On track vs target',savingsDir:'up',trend:[35,34.2,33.6,33.1,32.8,32.5,32.4]},
+  {name:'London · Site 01',labour:'35.8%',labourDelta:'0.6pp vs last week',labourDir:'down',footfall:'241',footfallDelta:'9 covers below forecast',footfallDir:'down',waste:'5',wasteDelta:'2 new flags today',wasteDir:'down',savings:'£980',savingsDelta:'Below target',savingsDir:'down',trend:[37,36.9,36.5,36.2,36,35.9,35.8]},
+  {name:'Manchester · Site 07',labour:'29.1%',labourDelta:'3.4pp vs last week',labourDir:'up',footfall:'152',footfallDelta:'22 covers vs forecast',footfallDir:'up',waste:'1',wasteDelta:'No new flags today',wasteDir:'up',savings:'£1,510',savingsDelta:'Ahead of target',savingsDir:'up',trend:[33,32.1,31.2,30.4,29.8,29.3,29.1]}
+];
+let dashStoreIdx=0;
+function cycleDashStore(){
+  dashStoreIdx=(dashStoreIdx+1)%DASH_STORES.length;
+  const s=DASH_STORES[dashStoreIdx];
+  document.getElementById('dashStoreName').textContent=s.name;
+  document.getElementById('kpiLabour').textContent=s.labour;
+  document.getElementById('kpiFootfall').textContent=s.footfall;
+  document.getElementById('kpiWaste').textContent=s.waste;
+  document.getElementById('kpiSavings').textContent=s.savings;
+  setKpiDelta('kpiLabourDelta',s.labourDelta,s.labourDir,true);
+  setKpiDelta('kpiFootfallDelta',s.footfallDelta,s.footfallDir,false);
+  setKpiDelta('kpiWasteDelta',s.wasteDelta,s.wasteDir,false);
+  setKpiDelta('kpiSavingsDelta',s.savingsDelta,s.savingsDir,false);
+  updateDashMiniChart(s.trend);
+}
+function setKpiDelta(id,text,dir,invert){
+  const el=document.getElementById(id);
+  if(!el)return;
+  const goodClass=invert?(dir==='down'?'up':'down'):(dir==='up'?'up':'down');
+  el.className='kpi-delta '+goodClass;
+  const icon=dir==='up'?'fa-arrow-up':'fa-arrow-down';
+  el.innerHTML='<i class="fas '+icon+'"></i> '+text;
+}
+function updateDashMiniChart(trend){
+  if(window._dashChartInstance){
+    window._dashChartInstance.data.datasets[0].data=trend;
+    window._dashChartInstance.update();
+  }
+}
 function initDashMiniChart(){
   const c=document.getElementById('dashMiniChart');
   if(!c||window._dashChart)return;
   window._dashChart=true;
-  new Chart(c,{type:'line',data:{labels:['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],datasets:[{label:'Labour Cost %',data:[35,34.2,33.6,33.1,32.8,32.5,32.4],borderColor:'rgba(255,90,31,.9)',backgroundColor:'rgba(255,90,31,.12)',borderWidth:2,tension:.4,fill:true,pointRadius:3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false},ticks:{font:{size:9}}},y:{grid:{color:'rgba(255,255,255,.06)'},ticks:{callback:v=>v+'%',font:{size:9}}}}}});
+  try{
+    if(typeof Chart==='undefined')throw new Error('Chart.js unavailable');
+    window._dashChartInstance=new Chart(c,{type:'line',data:{labels:['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],datasets:[{label:'Labour Cost %',data:DASH_STORES[0].trend,borderColor:'rgba(255,90,31,.9)',backgroundColor:'rgba(255,90,31,.12)',borderWidth:2,tension:.4,fill:true,pointRadius:3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false},ticks:{font:{size:9}}},y:{grid:{color:'rgba(255,255,255,.06)'},ticks:{callback:v=>v+'%',font:{size:9}}}}}});
+  }catch(err){
+    c.parentElement.innerHTML='<div style="height:100%;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:11px;color:var(--tw-dim);text-align:center;padding:20px;">Chart preview unavailable offline.<br>Trend: 35% → 32.4% labour cost this week.</div>';
+  }
 }
 
 /* ============ LIVE CLOCK ============ */
@@ -1410,4 +1458,4 @@ updateLiveClock();
 initDashMiniChart();
 </script>
 </body>
-</html>
+</html
