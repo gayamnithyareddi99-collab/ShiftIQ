@@ -973,19 +973,54 @@ footer{background:var(--panel);padding:52px 0 0;color:var(--tw-mid);border-top:1
 </section>
 </div><!-- /faq -->
 
-<!-- ═══════════════ CONTACT ═══════════════ -->
+<<!-- ═══════════════ CONTACT ═══════════════ -->
 <div class="page" id="page-contact">
 <section style="padding-top:clamp(60px,8vw,96px);min-height:calc(100vh - 60px)">
   <div class="container">
+
     <div class="eyebrow">Get In Touch</div>
     <h2 class="head">Book a Demo of ShiftIQ</h2>
     <div class="rule"></div>
+
     <div class="contact-grid">
-      <form class="order-form" onsubmit="handleSubmit(event)">
-        <div class="fgroup"><label>Full Name</label><input type="text" required placeholder="Your name"></div>
-        <div class="fgroup"><label>Business Email</label><input type="email" required placeholder="you@restaurant.co.uk"></div>
-        <div class="fgroup"><label>Business Type</label>
-          <select>
+
+      <!-- Contact Form -->
+      <form class="order-form"
+            action="https://api.web3forms.com/submit"
+            method="POST">
+
+        <!-- Web3Forms Access Key -->
+        <input type="hidden"
+               name="access_key"
+               value="1b51d36a-3fca-43c0-b358-ff9e36e80cab">
+
+        <!-- Optional: Disable Captcha -->
+        <input type="hidden" name="botcheck" value="">
+        <input type="hidden" name="subject" value="New ShiftIQ Demo Request">
+        <input type="hidden" name="from_name" value="ShiftIQ Website">
+
+        <div class="fgroup">
+          <label>Full Name</label>
+          <input
+            type="text"
+            name="name"
+            placeholder="Your name"
+            required>
+        </div>
+
+        <div class="fgroup">
+          <label>Business Email</label>
+          <input
+            type="email"
+            name="email"
+            placeholder="you@restaurant.co.uk"
+            required>
+        </div>
+
+        <div class="fgroup">
+          <label>Business Type</label>
+          <select name="business_type" required>
+            <option value="">Select Business Type</option>
             <option>QSR Franchise Operator</option>
             <option>Casual Dining / Fast Casual Chain</option>
             <option>Independent Multi-Location Group</option>
@@ -994,21 +1029,81 @@ footer{background:var(--panel);padding:52px 0 0;color:var(--tw-mid);border-top:1
             <option>Other</option>
           </select>
         </div>
-        <div class="fgroup"><label>Message</label><textarea placeholder="Tell us about your sites and what you'd like to see in a demo"></textarea></div>
-        <button class="btn btn-primary btn-block" type="submit">Send Demo Request <i class="fas fa-arrow-right"></i></button>
+
+        <div class="fgroup">
+          <label>Message</label>
+          <textarea
+            name="message"
+            rows="5"
+            placeholder="Tell us about your sites and what you'd like to see in a demo"
+            required></textarea>
+        </div>
+
+        <button class="btn btn-primary btn-block" type="submit">
+          Send Demo Request
+          <i class="fas fa-arrow-right"></i>
+        </button>
+
       </form>
+
+      <!-- Contact Information -->
       <div class="contact-side">
+
         <h3>Let's Protect Your Margins</h3>
-        <p class="sub">Whether you're running a single site or a multi-site franchise group, our team will walk you through how ShiftIQ fits your operation.</p>
-        <div class="c-row"><div class="ic"><i class="fas fa-envelope"></i></div><div><strong>Email</strong><span>shiftiquk@outlook.com</span></div></div>
-        <div class="c-row"><div class="ic"><i class="fas fa-location-dot"></i></div><div><strong>Location</strong><span>London, United Kingdom</span></div></div>
-        <div class="c-row"><div class="ic"><i class="fas fa-user"></i></div><div><strong>Founder</strong><span>Tanmay Shambharkar</span></div></div>
-        <div class="c-row"><div class="ic"><i class="fas fa-shield-halved"></i></div><div><strong>Compliance</strong><span>UK GDPR · FSA-Aligned · ICO Guidance</span></div></div>
+
+        <p class="sub">
+          Whether you're running a single site or a multi-site franchise group,
+          our team will walk you through how ShiftIQ fits your operation.
+        </p>
+
+        <div class="c-row">
+          <div class="ic">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div>
+            <strong>Email</strong>
+            <span>shiftiquk@outlook.com</span>
+          </div>
+        </div>
+
+        <div class="c-row">
+          <div class="ic">
+            <i class="fas fa-location-dot"></i>
+          </div>
+          <div>
+            <strong>Location</strong>
+            <span>London, United Kingdom</span>
+          </div>
+        </div>
+
+        <div class="c-row">
+          <div class="ic">
+            <i class="fas fa-user"></i>
+          </div>
+          <div>
+            <strong>Founder</strong>
+            <span>Tanmay Shambharkar</span>
+          </div>
+        </div>
+
+        <div class="c-row">
+          <div class="ic">
+            <i class="fas fa-shield-halved"></i>
+          </div>
+          <div>
+            <strong>Compliance</strong>
+            <span>UK GDPR · FSA-Aligned · ICO Guidance</span>
+          </div>
+        </div>
+
       </div>
+
     </div>
+
   </div>
 </section>
-</div><!-- /contact -->
+</div>
+<!-- /contact -->
 
 <!-- ═══════════════ PRIVACY ═══════════════ -->
 <div class="page" id="page-privacy">
